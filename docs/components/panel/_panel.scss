@@ -1,0 +1,71 @@
+.panel {
+  box-sizing: border-box;
+  min-height: 102px;
+  padding: 6px;
+
+  letter-spacing: .5px;
+
+  border-bottom: 6px solid darken($gray, 20%);
+  background-color: $gray;
+  @media screen and (min-width: 840px) {
+    width: 190px;
+    min-height: 100%;
+
+    border-right: 6px solid lighten($gray, 10%);
+    border-bottom: none;
+  }
+  &__title {
+    font-style: italic;
+
+    display: block;
+
+    margin: 0;
+    padding: 20px 0;
+
+    text-align: center;
+    letter-spacing: 2.6px;
+    text-transform: uppercase;
+
+    color: #fff;
+    text-shadow: shadow-text($gray, 4);
+  }
+  &__btn {
+    cursor: pointer;
+    user-select: none;
+
+    border: 6px solid $gray;
+    border-top-color: lighten($gray, 20%);
+    border-right-color: lighten($gray, 10%);
+    border-bottom-color: darken($gray, 20%);
+    border-left-color: darken($gray, 10%);
+    background-color: $gray;
+    &:hover {
+      border: 6px solid $gray;
+      border-top-color: lighten($gray, 25%);
+      border-right-color: lighten($gray, 15%);
+      border-bottom-color: darken($gray, 15%);
+      border-left-color: darken($gray, 5%);
+      background-color: lighten($gray, 5%);
+    }
+  }
+  .music-mute-btn {
+    line-height: 30px;
+
+    text-align: center;
+    &:after {
+      display: inline-block;
+
+      width: 23px;
+
+      content: 'On';
+      text-align: left;
+
+      color: #000;
+    }
+    &.mute {
+      &:after {
+        content: 'Off';
+      }
+    }
+  }
+}

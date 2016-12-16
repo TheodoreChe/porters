@@ -1,0 +1,34 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+
+  background: #fafafa;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+  @media screen and (min-width: 840px) {
+    flex-direction: row;
+  }
+}
+
+.main {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.game {
+  position: relative;
+}

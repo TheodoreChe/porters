@@ -1,0 +1,11 @@
+//COLORS
+$gray: #ccc;
+
+//FUNCTIONS
+@function shadow-text($color, $step){
+  $result: ();
+  @for $i from 0 through $step {
+    $result: append($result, append($i*.5px $i*1px 0, darken($color, $i*3)),comma);
+  }
+  @return $result
+}

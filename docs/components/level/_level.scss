@@ -1,0 +1,43 @@
+$level-1a: #dbcde2;
+$level-1b: #ffcd4e;
+.level {
+  &-1 {
+    background: linear-gradient(to top right, #3b1f53, #73319a);
+    .grid {
+      border-color: $level-1a;
+      &__cell {
+        border: 6px solid $level-1a;
+        border-top-color: lighten($level-1a, 20%);
+        border-right-color: lighten($level-1a, 10%);
+        border-bottom-color: darken($level-1a, 20%);
+        border-left-color: darken($level-1a, 10%);
+        background-color: $level-1a;
+      }
+    }
+    .panel {
+      background-color: $level-1b;
+      border-right-color: lighten($level-1b, 10%);
+      border-bottom-color: darken($level-1b, 20%);
+      &__title{
+        text-shadow: shadow-text(darken($level-1b, 10%), 4);
+      }
+      &__btn {
+        color: darken($level-1b, 50%);
+        border: 6px solid $level-1b;
+        border-top-color: lighten($level-1b, 20%);
+        border-right-color: lighten($level-1b, 10%);
+        border-bottom-color: darken($level-1b, 20%);
+        border-left-color: darken($level-1b, 10%);
+        background-color: $level-1b;
+        &:hover{
+          border: 6px solid $level-1b;
+          border-top-color: lighten($level-1b, 25%);
+          border-right-color: lighten($level-1b, 15%);
+          border-bottom-color: darken($level-1b, 15%);
+          border-left-color: darken($level-1b, 5%);
+          background-color: lighten($level-1b, 5%);
+        }
+      }
+    }
+  }
+}
