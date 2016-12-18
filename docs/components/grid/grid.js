@@ -3,7 +3,7 @@
 
     /**
      *
-     * Class representing a menu.
+     * Class representing a grid.
      * @class Sounds
      */
     class Grid {
@@ -26,7 +26,7 @@
          */
         _init({el, size}) {
             this._size = size;
-            this._$game = el;
+            this._$grid = el;
             this._cells = [];
         }
 
@@ -51,11 +51,8 @@
          */
         _appendCell(item) {
             return item.map((item, index) => {
-                console.log(item);
                 return `<div
-                class = "grid__cell"
-                data-column = "${item.column}"
-                data-index = "${item.index}"></div>`;
+                class = "grid__cell"></div>`;
             }).join('');
         }
 
@@ -67,8 +64,7 @@
         _appendRow() {
             return this._cells.map((item, index) => {
                 return `<div
-                class = "grid__row"
-                data-row = "${index}">
+                class = "grid__row">
                 ${this._appendCell(item)}
                 </div>`;
             }).join('');
@@ -79,9 +75,7 @@
          * @private
          */
         _render() {
-            this._$game.innerHTML += `<div
-            class="grid">
-            ${this._appendRow()}</div>`;
+            this._$grid.innerHTML = `${this._appendRow()}`;
         }
 
     }

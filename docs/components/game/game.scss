@@ -1,6 +1,9 @@
 @charset "UTF-8";
 @import "scss/init";
+
+//IMPORT COMPONENTS
 @import "../grid/grid";
 @import "../level/level";
 @import "../panel/panel";
 @import "../board/board";
+@import "../turtle/turtle";

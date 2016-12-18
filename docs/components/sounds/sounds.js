@@ -82,7 +82,7 @@
          * @private
          */
         _loopInit() {
-            if (this._checkLoop){
+            if (this._checkLoop) {
                 this._eventLoop = this._loop.bind(this);
                 this._audio.addEventListener('timeupdate', this._eventLoop);
             }

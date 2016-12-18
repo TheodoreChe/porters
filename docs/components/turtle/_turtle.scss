@@ -1,0 +1,42 @@
+.turtle {
+  position: absolute;
+
+  box-sizing: border-box;
+  width: 60px;
+  height: 60px;
+  margin: 15px;
+
+  transition: top .4s cubic-bezier(.66, .13, .65, 1.35), left .4s cubic-bezier(.66, .13, .65, 1.35);
+
+  border: 7px solid #795548;
+  border-top-color: #a1887f;
+  border-right-color: #795548;
+  border-bottom-color: #5d4037;
+  border-left-color: #6d4c41;
+  border-radius: 11px;
+  background-image: linear-gradient(to top right, rgba(76, 175, 80, .24), transparent), radial-gradient(closest-side, #8bc34a 90%, #4caf50 91%);
+  background-position: center;
+  background-size: 50%;
+  z-index: 2;
+  &:before,
+  &:after {
+    position: absolute;
+    top: -7px;
+    left: -7px;
+
+    box-sizing: border-box;
+    width: 60px;
+    height: 60px;
+
+    content: '';
+
+    border-radius: 17px;
+    background-image: radial-gradient(closest-side, transparent 76%, #4caf50 76%);
+  }
+  &:before {
+    transform: rotate(30deg);
+  }
+  &:after {
+    transform: rotate(60deg);
+  }
+}

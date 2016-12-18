@@ -3,7 +3,7 @@
 
     /**
      *
-     * Class representing a menu.
+     * Class representing info panel.
      * @class Sounds
      */
     class Panel {
@@ -72,7 +72,7 @@
          */
         _render() {
             this._$panel.innerHTML = `<div class="panel__header">
-            <h1 class="panel__title">Porters</h1></div>
+            <h1 class="panel__title">Turtle Twins</h1></div>
             ${this._appendButton()}`;
         }
 
