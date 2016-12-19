@@ -1,6 +1,8 @@
 (function() {
     'use strict';
 
+    let tmpl = window.menuTpl;
+
     /**
      *
      * Class representing info panel.

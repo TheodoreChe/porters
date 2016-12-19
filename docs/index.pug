@@ -11,16 +11,20 @@ html(lang='en')
       .panel
       .main
 
-    script(src='components/helpers/helpers.js')
+    - var dr = 'components/'
 
-    script(src='components/grid/grid.js')
+    // Components
+    script(src=dr + 'helpers/helpers.js')
 
-    script(src='components/sounds/sounds.js')
+    script(src=dr + 'grid/grid.js')
 
-    script(src='components/panel/panel.js')
+    script(src=dr + 'sounds/sounds.js')
 
-    script(src='components/board/board.js')
+    script(src=dr + 'panel/panel.js')
 
-    script(src='components/level/level.js')
+    script(src=dr + 'board/board.js')
 
-    script(src='components/game/game.js')
+    script(src=dr + 'level/level.js')
+
+    // Game
+    script(src=dr + 'game/game.js')
