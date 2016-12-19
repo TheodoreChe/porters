@@ -58,7 +58,7 @@
         /**
          *
          * @private
-         * @return {HTMLElement}
+         * @return {string}
          */
         _appendButton() {
             return this._buttons.map((item) => {
