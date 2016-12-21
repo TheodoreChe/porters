@@ -60,12 +60,29 @@
 
         /**
          *
+         * @param {array} arrA
+         * @param {array} arrB
+         * @return {boolean}
+         */
+        similar(arrA, arrB) {
+            let arrA0 = '' + arrA[0];
+            let arrA1 = '' + arrA[1];
+            let arrB0 = '' + arrB[0];
+            let arrB1 = '' + arrB[1];
+
+            return ((arrA0 == arrB0 || arrA0 == arrB1)
+                && (arrA1 == arrB0 || arrA1 == arrB1));
+        }
+
+        /**
+         *
          * @param {keyboardEvent} event
          * @param {object} el
+         * @param {object} goals
          * @param {number} size
          * @param {array} keys
          */
-        lift({event, el, size, keys}) {
+        lift({event, el, goals, size, keys}) {
             let code = event.keyCode
                     || event.which;
 
@@ -88,14 +105,35 @@
                         item.xpos = xNext >= 0 && xNext < size ? xNext : xNow;
                     });
 
-                    let stoper =
+                    /**
+                     *
+                     * Anti-collision
+                     */
+                    let notCollide =
                         (el[0].ypos !== el[1].ypos) ||
                         (el[0].xpos !== el[1].xpos);
 
-                    if (stoper) {
+                    if (notCollide) {
                         el.map((item) => {
                             this.position(item, [item.xpos, item.ypos]);
                         });
+                    }
+
+                    /**
+                     *
+                     * Finish
+                     */
+                    let finish = this.similar(
+                        [
+                            [el[0].xpos, el[0].ypos],
+                            [el[1].xpos, el[1].ypos]],
+                        [
+                            [goals[0].dataset.x, goals[0].dataset.y],
+                            [goals[1].dataset.x, goals[1].dataset.y]]);
+
+                    if (finish) {
+
+                        console.log('FINISH FINISH FINISH');
                     }
                 }
             }
@@ -106,7 +144,7 @@
          * @param {object} el
          * @param {number} size
          */
-        lifter({el, size}) {
+        lifter({el, goals, size}) {
             let self = this;
             let keys = {
                 38: 'up',
@@ -118,6 +156,7 @@
                 self.lift({
                     'event': event,
                     'el': el,
+                    'goals': goals,
                     'size': size,
                     'keys': keys});
             });

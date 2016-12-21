@@ -15,10 +15,10 @@ $level-1b: #ffcd4e;
       }
     }
     .panel {
-      background-color: $level-1b;
       border-right-color: lighten($level-1b, 10%);
       border-bottom-color: darken($level-1b, 20%);
-      &__title{
+      background-color: $level-1b;
+      &__title {
         text-shadow: shadow-text(darken($level-1b, 10%), 4);
       }
       &__btn {
@@ -29,7 +29,7 @@ $level-1b: #ffcd4e;
         border-bottom-color: darken($level-1b, 20%);
         border-left-color: darken($level-1b, 10%);
         background-color: $level-1b;
-        &:hover{
+        &:hover {
           border: 6px solid $level-1b;
           border-top-color: lighten($level-1b, 25%);
           border-right-color: lighten($level-1b, 15%);
@@ -37,6 +37,37 @@ $level-1b: #ffcd4e;
           border-left-color: darken($level-1b, 5%);
           background-color: lighten($level-1b, 5%);
         }
+      }
+    }
+    .board {
+      &__target {
+        position: absolute;
+
+        box-sizing: border-box;
+        width: 60px;
+        height: 60px;
+        margin: 15px;
+
+        animation: rotate 8s linear infinite;
+
+        border: 2px dashed #682d8c;
+        border-radius: 30px;
+      }
+      &__barrier {
+        position: relative;
+        top: 180px;
+        left: 89px;
+
+        box-sizing: border-box;
+        width: 90px;
+        height: 90px;
+
+        border: 17px solid #ccc;
+        border-top-color: white;
+        border-right-color: #e8f0f2;
+        border-bottom-color: #719fae;
+        border-left-color: #9abac5;
+        background-color: #c1d5dc;
       }
     }
   }

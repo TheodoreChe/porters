@@ -16,8 +16,24 @@
 
     animation: rotate 8s linear infinite;
 
-    border: 2px dashed #682d8c;
+    border: 2px dashed #8a8a8a;
     border-radius: 30px;
+  }
+  &__barrier {
+    position: relative;
+    top: 180px;
+    left: 89px;
+
+    box-sizing: border-box;
+    width: 90px;
+    height: 90px;
+
+    border: 17px solid #ccc;
+    border-top-color: white;
+    border-right-color: #f0f0f0;
+    border-bottom-color: #adadad;
+    border-left-color: #c4c4c4;
+    background-color: #dbdbdb;
   }
 }
 

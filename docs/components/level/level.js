@@ -34,11 +34,10 @@
          * Set first position for turtles and goals
          */
         startPositions() {
-            console.log(`${this._levelName} start position`);
-            this._turtles.map((t, i)=>{
+            this._turtles.map((t, i) => {
                 this._push(t, this._tP[i]);
             });
-            this._goals.map((g, i)=>{
+            this._goals.map((g, i) => {
                 this._push(g, this._gP[i]);
             });
         }

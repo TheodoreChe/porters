@@ -5,7 +5,7 @@
     /**
      *
      * Class representing a grid.
-     * @class Sounds
+     * @class Grid
      */
     class Grid {
 
@@ -28,8 +28,8 @@
             this._size = size;
             this._$grid = el;
             this._tpl = tpl;
+            this._blocks = [[1, 2]];
         }
-
 
         /**
          *
