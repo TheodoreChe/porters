@@ -20,7 +20,8 @@
          *
          * @private
          */
-        _init({turtles, goals, turtlesP, goalsP, pusher}) {
+        _init({name, turtles, goals, turtlesP, goalsP, pusher}) {
+            this._levelName = name;
             this._turtles = turtles;
             this._goals = goals;
             this._tP = turtlesP;
@@ -33,7 +34,7 @@
          * Set first position for turtles and goals
          */
         startPositions() {
-            console.log('start position');
+            console.log(`${this._levelName} start position`);
             this._turtles.map((t, i)=>{
                 this._push(t, this._tP[i]);
             });
@@ -47,7 +48,8 @@
          * Starting current level
          */
         start() {
-            console.log('level starting');
+            console.log(`${this._levelName} starting`);
+            document.body.className = this._levelName;
             this.startPositions();
         }
     }

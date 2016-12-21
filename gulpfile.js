@@ -12,12 +12,16 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 
 // Init Pug
-const pug = require('gulp-pug');
+const pug = require('pug');
+const gpug = require('gulp-pug');
 
 // Init Utils
-const print = require('gulp-print');
+const path = require('path');
+const fs = require('fs');
 
-// Task Sass
+/**
+ * Task Sass
+ */
 gulp.task('sass', function() {
     return gulp.src('docs/components/**/*.scss')
         .pipe(glob())
@@ -27,22 +31,32 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('docs/components/'));
 });
 
-// Watch Sass
+/**
+ * Watch Sass
+ */
 gulp.task('watch', function() {
     gulp.watch('docs/components/**/*.scss',
         gulp.series('sass'));
 });
 
-// Task Pug panel.tpl.js
+/**
+ * Task Pug *.tpl.js
+ * info: function name = filenameTpl
+ */
 gulp.task('views', function() {
-    return gulp.src('docs/components/panel/panel.tpl.pug')
-        .pipe(pug({name: 'panelTpl', client: true}))
-        .pipe(gulp.dest('docs/components/panel/'));
+    return gulp.src('docs/components/**/*.tpl.pug')
+        .on('data', function(file) {
+            let jsString = pug.compileFileClient(file.path,
+                {name: `${path.basename(file.path).slice(0, -8)}Tpl`});
+            fs.writeFileSync(file.path.slice(0, -4) + '.js', jsString);
+        });
 });
 
-// Task Pug index.html
+/**
+ * Task Pug index.html
+ */
 gulp.task('index', function() {
     return gulp.src('docs/index.pug')
-        .pipe(pug({pretty: true}))
+        .pipe(gpug({pretty: true}))
         .pipe(gulp.dest('docs/'));
 });

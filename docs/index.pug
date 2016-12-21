@@ -1,30 +1,32 @@
-doctype
-html(lang='en')
-  head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    title Turtle Twins
-    link(rel='stylesheet', href='components/game/game.css')
-  body.level-1
-    .container
-      .panel
-      .main
+extends layout.pug
 
-    - var dr = 'components/'
+block title
+  title Turtle Twins
 
-    // Components
-    script(src=dr + 'helpers/helpers.js')
+block content
+  .container
+    .panel
+    .main
+      .game
+        .grid
+        .board
 
-    script(src=dr + 'grid/grid.js')
+block scripts
+  -
+    var src = 'components/'
+    var tpl = ['panel','board'];
+    var components = ['helpers',
+                  'grid',
+                  'sounds',
+                  'panel',
+                  'board',
+                  'level',
+                  'game'];
 
-    script(src=dr + 'sounds/sounds.js')
+  //Tpl
+  each val in tpl
+    script(src = src + val + '/' + val + '.tpl.js')
 
-    script(src=dr + 'panel/panel.js')
-
-    script(src=dr + 'board/board.js')
-
-    script(src=dr + 'level/level.js')
-
-    // Game
-    script(src=dr + 'game/game.js')
+  // Components
+  each val in components
+    script(src = src + val + '/' + val + '.js')

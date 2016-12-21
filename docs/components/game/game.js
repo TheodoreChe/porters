@@ -20,19 +20,17 @@
 
     /**
      *
-     * Init game container
-     */
-    document.querySelector('.main').innerHTML = `<div class="game">
-    <div class="grid"></div><div class="board"></div></div>`;
-
-    /**
-     *
      * Init Sounds
      */
     let bgSound = new Sounds({
         'src': 'components/sounds/back.mp3',
         'loop': true,
         'delay': .432});
+
+    /**
+     *
+     * Start background music
+     */
     bgSound.play();
 
     /**
@@ -102,45 +100,41 @@
         /**
          * Turtles Up
          */
-        hp.elPush({
+        board.elPush({
             'el': $turtles,
             'key': 38,
             'dir': 'up',
-            'stop': 0,
-            'pusher': board.position});
+            'stop': 0});
 
         /**
          *
          * Turtles Down
          */
-        hp.elPush({
+        board.elPush({
             'el': $turtles,
             'key': 40,
             'dir': 'down',
-            'stop': 4,
-            'pusher': board.position});
+            'stop': 4});
 
         /**
          *
          * Turtles Left
          */
-        hp.elPush({
+        board.elPush({
             'el': $turtles,
             'key': 37,
             'dir': 'left',
-            'stop': 0,
-            'pusher': board.position});
+            'stop': 0});
 
         /**
          *
          * Turtles Right
          */
-        hp.elPush({
+        board.elPush({
             'el': $turtles,
             'key': 39,
             'dir': 'right',
-            'stop': 4,
-            'pusher': board.position});
+            'stop': 4});
     });
 
     /**
@@ -148,6 +142,7 @@
      * Init Level 1
      */
     let level1 = new Level({
+        'name': 'level-1',
         'turtles': $turtles,
         'goals': $goals,
         'turtlesP': [[1, 1], [2, 2]],

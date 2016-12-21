@@ -1,6 +1,7 @@
 (function() {
     'use strict';
 
+    let tpl = window.boardTpl;
     /**
      *
      * Class representing a board.
@@ -23,6 +24,7 @@
          */
         _init({el}) {
             this._$board = el;
+            this._tpl = tpl;
         }
 
         /**
@@ -42,13 +44,46 @@
 
         /**
          *
+         * @param {object} el
+         * @param {number} key
+         * @param {string} dir - left||right||up||down
+         * @param {number} stop
+         */
+        elPush({el, key, dir, stop}) {
+            if ((event.keyCode || event.which) == key) {
+                el.map((item)=>{
+                    let yp = item.dataset.y;
+                    let xp = item.dataset.x;
+                    let stoper;
+                    switch (dir) {
+                        case 'up':
+                            stoper = (stop != yp--);
+                            break;
+                        case 'down':
+                            stoper = (stop != yp++);
+                            break;
+                        case 'left':
+                            stoper = (stop != xp--);
+                            break;
+                        case 'right':
+                            stoper = (stop != xp++);
+                            break;
+                        default:
+                            console.log('wrong direction');
+                    }
+                    if (stoper) {
+                        this.position(item, [xp, yp]);
+                    }
+                });
+            }
+        }
+
+        /**
+         *
          * @private
          */
         _render() {
-            this._$board.innerHTML = `<div class="turtle" data-index="1"></div>
-            <div class="turtle" data-index="2"></div>
-            <div class="board__target"></div>
-            <div class="board__target"></div>`;
+            this._$board.innerHTML = this._tpl();
         }
 
     }

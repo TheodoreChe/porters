@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    let tmpl = window.menuTpl;
+    let tpl = window.panelTpl;
 
     /**
      *
@@ -26,6 +26,7 @@
         _init({el}) {
             this._$panel = el;
             this._buttons = [];
+            this._tpl = tpl;
         }
 
         /**
@@ -35,16 +36,14 @@
          * @param {object} click
          */
         addButton({text = 'Button', classname = '', click = {}}) {
-            let btn = document.createElement('div');
-            let txt = document.createTextNode(text);
-            btn.appendChild(txt);
-            btn.className = 'panel__btn ' + classname;
+            let btn = {};
+            btn.className = classname;
+            btn.txt = text;
             this._buttons.push(btn);
 
             /**
              *
-             * I check clicks on the body
-             * as the button is passed by value in _appendButton()
+             * It binds the button's click event by class name
              * Maybe it is a bad practice
              */
             document.querySelector('body').addEventListener('click',
@@ -60,22 +59,10 @@
         /**
          *
          * @private
-         * @return {string}
-         */
-        _appendButton() {
-            return this._buttons.map((item) => {
-                return item.outerHTML;
-            }).join('');
-        }
-
-        /**
-         *
-         * @private
          */
         _render() {
-            this._$panel.innerHTML = `<div class="panel__header">
-            <h1 class="panel__title">Turtle Twins</h1></div>
-            ${this._appendButton()}`;
+            this._$panel.innerHTML = this._tpl({
+                'btns': this._buttons});
         }
 
     }

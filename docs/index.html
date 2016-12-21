@@ -7,11 +7,19 @@
     <title>Turtle Twins</title>
     <link rel="stylesheet" href="components/game/game.css">
   </head>
-  <body class="level-1">
+  <body>
     <div class="container">
       <div class="panel"></div>
-      <div class="main"></div>
+      <div class="main">
+        <div class="game">
+          <div class="grid"></div>
+          <div class="board"></div>
+        </div>
+      </div>
     </div>
+    <!--Tpl-->
+    <script src="components/panel/panel.tpl.js"></script>
+    <script src="components/board/board.tpl.js"></script>
     <!-- Components-->
     <script src="components/helpers/helpers.js"></script>
     <script src="components/grid/grid.js"></script>
@@ -19,7 +27,6 @@
     <script src="components/panel/panel.js"></script>
     <script src="components/board/board.js"></script>
     <script src="components/level/level.js"></script>
-    <!-- Game-->
     <script src="components/game/game.js"></script>
   </body>
 </html>
