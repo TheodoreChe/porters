@@ -106,7 +106,7 @@
         'name': 'level-1',
         'turtles': $turtles,
         'goals': $goals,
-        'turtlesP': [[1, 1], [2, 2]],
+        'turtlesP': [[1, 1], [4, 2]],
         'goalsP': [[3, 3], [4, 4]],
         'pusher': board.position});
 
