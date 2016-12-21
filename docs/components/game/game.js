@@ -70,11 +70,11 @@
 
     /**
      *
+     * Change text on the mute button
      * @param {string} pm - play||mute
      */
     function muteSwitchBtn(pm) {
-        document.querySelector('.music-mute-btn')
-            .className = 'panel__btn music-mute-btn ' + pm;
+        document.querySelector('.music-mute-btn').dataset.volume = pm;
     }
 
     /**
@@ -92,50 +92,11 @@
     let $goals = hp.array(document.querySelectorAll('.board__target'));
 
     /**
-     *
-     * Event listeners
+     * Keyboard event listener
      */
-    document.addEventListener('keydown', function(event) {
-
-        /**
-         * Turtles Up
-         */
-        board.elPush({
-            'el': $turtles,
-            'key': 38,
-            'dir': 'up',
-            'stop': 0});
-
-        /**
-         *
-         * Turtles Down
-         */
-        board.elPush({
-            'el': $turtles,
-            'key': 40,
-            'dir': 'down',
-            'stop': 4});
-
-        /**
-         *
-         * Turtles Left
-         */
-        board.elPush({
-            'el': $turtles,
-            'key': 37,
-            'dir': 'left',
-            'stop': 0});
-
-        /**
-         *
-         * Turtles Right
-         */
-        board.elPush({
-            'el': $turtles,
-            'key': 39,
-            'dir': 'right',
-            'stop': 4});
-    });
+    board.lifter({
+        'el': $turtles,
+        'size': 5});
 
     /**
      *

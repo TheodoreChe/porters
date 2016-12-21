@@ -62,7 +62,7 @@
 
       color: #000;
     }
-    &.mute {
+    &[data-volume=mute] {
       &:after {
         content: 'Off';
       }
