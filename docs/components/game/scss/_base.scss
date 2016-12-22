@@ -24,9 +24,16 @@ body {
 
   display: flex;
 
+  transition: filter .2s linear, transform .2s linear;
+
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+  &[data-game='pause'] {
+    transform: scale(.97);
+
+    filter: blur(2px);
+  }
 }
 
 .game {

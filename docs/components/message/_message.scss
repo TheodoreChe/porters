@@ -1,0 +1,50 @@
+.message {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transform: translate(-50%, -50%) rotate(0deg);
+
+  opacity: 0;
+  background-color: #fff;
+  &[data-show='show'] {
+    transform: translate(-50%, -50%) rotate(360deg);
+
+    opacity: 1;
+  }
+  &__title {
+    font-size: 2em;
+    font-weight: 700;
+    font-style: italic;
+
+    padding: 40px 60px;
+
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+
+    color: #6d2f92;
+  }
+  &__btn {
+    font-weight: bold;
+    line-height: 35px;
+
+    margin: 20px;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-align: center;
+
+    color: #6d2f92;
+    border: 6px solid #ffcd4e;
+    border-top-color: #ffeab4;
+    border-right-color: #ffdb81;
+    border-bottom-color: #e7a600;
+    border-left-color: #ffbf1b;
+    background-color: #ffcd4e;
+  }
+}

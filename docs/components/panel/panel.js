@@ -23,37 +23,11 @@
          *
          * @private
          */
-        _init({el}) {
+        _init({el,level}) {
             this._$panel = el;
+            this._$level = level;
             this._buttons = [];
             this._tpl = tpl;
-        }
-
-        /**
-         *
-         * @param {string} text
-         * @param {string} classname
-         * @param {object} click
-         */
-        addButton({text = 'Button', classname = '', click = {}}) {
-            let btn = {};
-            btn.className = classname;
-            btn.txt = text;
-            this._buttons.push(btn);
-
-            /**
-             *
-             * It binds the button's click event by class name
-             * Maybe it is a bad practice
-             */
-            document.querySelector('body').addEventListener('click',
-                function(e) {
-                    if (e.target.className.includes(btn.className)) {
-                        click();
-                    }
-                });
-
-            this._render();
         }
 
         /**

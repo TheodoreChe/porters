@@ -1,35 +1,39 @@
 extends layout.pug
 
 block title
-  title Turtle Twins
+    title Turtle Twins
 
 block content
-  .container
-    .panel
-    .main
-      .game
-        .grid
-        .board
+    .container
+        .message
+        .panel
+        .main
+            .game
+                .grid
+                .board
 
 block scripts
-  -
-    var src = 'components/'
-    var tpl = ['grid','panel','board'];
-    var components = ['helpers',
-                  'grid',
-                  'sounds',
-                  'panel',
-                  'board',
-                  'level',
-                  'game'];
+    -
+        var src = 'components/'
+        var tpl = ['grid','panel','board','message'];
+        var components = [
+        'helpers',
+        'grid',
+        'sounds',
+        'panel',
+        'board',
+        'level',
+        'message',
+        'game'
+        ];
 
-  //Tpl
-  each val in tpl
-    script(src = src + val + '/' + val + '.tpl.js')
+    //Tpl
+    each val in tpl
+        script(src = src + val + '/' + val + '.tpl.js')
 
-  // Components
-  each val in components
-    script(src = src + val + '/' + val + '.js')
+    // Components
+    each val in components
+        script(src = src + val + '/' + val + '.js')
 
-  //App
-  script(src = 'app.js')
+    //App
+    script(src = 'app.js')

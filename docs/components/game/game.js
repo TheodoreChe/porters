@@ -11,6 +11,7 @@
     let Panel = window.Panel;
     let Board = window.Board;
     let Level = window.Level;
+    let Message = window.Message;
 
     /**
      *
@@ -36,6 +37,7 @@
              * Helpers
              */
             this._hp = new Helpers;
+            this.sim = this._hp.similar;
 
             /**
              *
@@ -68,21 +70,79 @@
              *
              * Turtles and goals selectors
              */
-            this._$turtles = this._hp.array(document.querySelectorAll('.turtle'));
-            this._$goals = this._hp.array(document.querySelectorAll('.board__target'));
+            this._$turtles = this._hp.arr(document.querySelectorAll('.turtle'));
+            this._$goals = this._hp.arr(document.querySelectorAll('.board__target'));
+            this.tracker = this.tracker.bind(this);
+            this.levelNumber;
 
             /**
-             * Keyboard turtles management
+             * Turtles position management
              */
             this._board.lifter({
                 'el': this._$turtles,
                 'goals': this._$goals,
-                'size': 5});
+                'size': 5,
+                'tracker': this.tracker});
 
             /**
              * Levels
              */
+            this._level = {};
             this._initLevels();
+
+            /**
+             *
+             * Board
+             */
+            this._message = new Message({
+                'el': document.querySelector('.message')});
+
+            /**
+             * buttons
+             */
+            this._buttonEvents();
+        }
+
+        /**
+         *
+         * @param {array} pos
+         */
+        tracker() {
+            if (this._level.finish(this._board.coord)) {
+                document.querySelector('.main').dataset.game = 'pause';
+                this._board.freeze = true;
+                this._message.show({
+                    title: 'Congrats!'});
+            }
+        }
+
+        /**
+         *
+         * @private
+         */
+        _nextLevel() {
+            document.querySelector('.main').dataset.game = '';
+            document.querySelector('.message').dataset.show = '';
+            this._level.start(++this.levelNumber);
+            this._board.freeze = false;
+        }
+
+        /**
+         *
+         * @private
+         */
+        _buttonEvents() {
+            let self = this;
+            document.querySelector('body').addEventListener('click',
+                function(e) {
+                    if (e.target.dataset.btn == 'sound') {
+                        self._bgSound.toggle(self._muteSwitchBtn);
+                    }
+                    if (e.target.dataset.btn == 'next') {
+                        self._nextLevel();
+                    }
+                });
+
         }
 
         /**
@@ -92,21 +152,20 @@
         _initLevels() {
             /**
              *
-             * Init Level 1
+             * Init Levels
              */
-            this.level1 = new Level({
-                'name': 'level-1',
+            this._level = new Level({
                 'turtles': this._$turtles,
                 'goals': this._$goals,
-                'turtlesP': [[1, 1], [4, 2]],
-                'goalsP': [[3, 3], [4, 4]],
-                'pusher': this._board.position});
+                'pusher': this._board.posArr,
+                'similar': this.sim});
 
             /**
              *
              * Start Level 1
              */
-            this.level1.start();
+            this.levelNumber = 1;
+            this._level.start(this.levelNumber);
         }
 
         /**
@@ -115,17 +174,6 @@
          */
         _initPanel() {
             this._panel = new Panel({'el': document.querySelector('.panel')});
-
-            /**
-             *
-             * Add music mute button
-             */
-            this._panel.addButton({
-                'text': 'Music: ',
-                'classname': 'music-mute-btn',
-                'click': (e) => {
-                    this._bgSound.toggle(this._muteSwitchBtn);
-                }});
         }
 
         /**

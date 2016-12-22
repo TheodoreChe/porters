@@ -25,6 +25,23 @@
         _init({el}) {
             this._$board = el;
             this._tpl = tpl;
+            this.coord = [];
+            this.freeze = false;
+        }
+
+        /**
+         *
+         * @param {array} arr
+         * @param {array} position
+         */
+        posArr(arr, position) {
+            arr.map((el, index) => {
+                let pos = position[index];
+                el.style.left = `${(pos[0] * 90)}px`;
+                el.style.top = `${(pos[1] * 90)}px`;
+                el.dataset.x = pos[0];
+                el.dataset.y = pos[1];
+            });
         }
 
         /**
@@ -34,9 +51,6 @@
          * @param {array} pos
          */
         position(el, pos) {
-            console.log('%c' + el.className
-                + ' position change', 'color: #ccc');
-
             el.style.left = `${(pos[0] * 90)}px`;
             el.style.top = `${(pos[1] * 90)}px`;
             el.dataset.x = pos[0];
@@ -58,21 +72,6 @@
             return key[dir];
         }
 
-        /**
-         *
-         * @param {array} arrA
-         * @param {array} arrB
-         * @return {boolean}
-         */
-        similar(arrA, arrB) {
-            let arrA0 = '' + arrA[0];
-            let arrA1 = '' + arrA[1];
-            let arrB0 = '' + arrB[0];
-            let arrB1 = '' + arrB[1];
-
-            return ((arrA0 == arrB0 || arrA0 == arrB1)
-                && (arrA1 == arrB0 || arrA1 == arrB1));
-        }
 
         /**
          *
@@ -82,7 +81,7 @@
          * @param {number} size
          * @param {array} keys
          */
-        lift({event, el, goals, size, keys}) {
+        lift({event, el, goals, size, keys, tracker}) {
             let code = event.keyCode
                     || event.which;
 
@@ -91,7 +90,7 @@
                     || event.shiftKey
                     || event.metaKey;
 
-            if (keys[code] !== undefined) {
+            if (keys[code] !== undefined && !this.freeze) {
                 if (!meta) {
                     event.preventDefault();
                     el.map((item) => {
@@ -118,48 +117,44 @@
                             this.position(item, [item.xpos, item.ypos]);
                         });
                     }
+                    console.log('start');
 
-                    /**
-                     *
-                     * Finish
-                     */
-                    let finish = this.similar(
-                        [
-                            [el[0].xpos, el[0].ypos],
-                            [el[1].xpos, el[1].ypos]],
-                        [
-                            [goals[0].dataset.x, goals[0].dataset.y],
-                            [goals[1].dataset.x, goals[1].dataset.y]]);
 
-                    if (finish) {
-
-                        console.log('FINISH FINISH FINISH');
-                    }
+                    this.coord = [[el[0].xpos, el[0].ypos], [el[1].xpos, el[1].ypos]];
                 }
             }
         }
 
+
         /**
          *
          * @param {object} el
+         * @param {object} goals
          * @param {number} size
+         * @param {object} tracker
          */
-        lifter({el, goals, size}) {
+        lifter({el, goals, size, tracker}) {
             let self = this;
             let keys = {
                 38: 'up',
                 39: 'right',
                 40: 'down',
                 37: 'left'};
+            let pos;
+
+
 
             document.addEventListener('keydown', (event) => {
-                self.lift({
+                return pos = self.lift({
                     'event': event,
                     'el': el,
                     'goals': goals,
                     'size': size,
-                    'keys': keys});
+                    'keys': keys,
+                    'tracker': tracker});
             });
+
+            el[0].addEventListener('transitionend', tracker, false);
         }
 
         /**

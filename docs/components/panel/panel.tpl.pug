@@ -1,5 +1,3 @@
 .panel__header
     h1.panel__title Turtle Twins
-    each btn in btns
-        div(class = 'panel__btn ' + btn.className)
-            =btn.txt
+    .panel__btn.music-mute-btn( data-btn="sound" data-volume="" ) Music:
