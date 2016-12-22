@@ -33,66 +33,33 @@
         _init() {
             /**
              *
-             * Init helpers
+             * Helpers
              */
             this._hp = new Helpers;
 
             /**
              *
-             * Init Sounds
+             * Sounds
              */
-            this._bgSound = new Sounds({
-                'src': 'components/sounds/back.mp3',
-                'loop': true,
-                'delay': .432});
+            this._initSounds();
 
             /**
              *
-             * Start background music
+             * Panel
              */
-            this._bgSound.play();
+            this._initPanel();
 
             /**
              *
-             * Init Panel
-             */
-            this._panel = new Panel({'el': document.querySelector('.panel')});
-
-            /**
-             *
-             * Add music mute button
-             */
-            this._panel.addButton({
-                'text': 'Music: ',
-                'classname': 'music-mute-btn',
-                'click': (e) => {
-                    this._bgSound.toggle(this._muteSwitchBtn);
-                }});
-
-            /**
-             *
-             * Mute music in a page with spacebar or "M" button
-             */
-            let self = this;
-            document.addEventListener('keydown', function(event) {
-                if ((event.keyCode || event.which) == 32 || (event.keyCode || event.which) == 77) {
-                    self._bgSound.toggle(self._muteSwitchBtn);
-                }
-            });
-
-            /**
-             *
-             * Init Grid
+             *  Grid
              */
             this._grid = new Grid({
                 'el': document.querySelector('.grid'),
                 'size': 5});
 
-
-
             /**
              *
-             * Init Board
+             * Board
              */
             this._board = new Board({
                 'el': document.querySelector('.board')});
@@ -113,6 +80,17 @@
                 'size': 5});
 
             /**
+             * Levels
+             */
+            this._initLevels();
+        }
+
+        /**
+         *
+         * @private
+         */
+        _initLevels() {
+            /**
              *
              * Init Level 1
              */
@@ -129,7 +107,53 @@
              * Start Level 1
              */
             this.level1.start();
+        }
 
+        /**
+         *
+         * @private
+         */
+        _initPanel() {
+            this._panel = new Panel({'el': document.querySelector('.panel')});
+
+            /**
+             *
+             * Add music mute button
+             */
+            this._panel.addButton({
+                'text': 'Music: ',
+                'classname': 'music-mute-btn',
+                'click': (e) => {
+                    this._bgSound.toggle(this._muteSwitchBtn);
+                }});
+        }
+
+        /**
+         *
+         * @private
+         */
+        _initSounds() {
+            this._bgSound = new Sounds({
+                'src': 'components/sounds/back.mp3',
+                'loop': true,
+                'delay': .432});
+
+            /**
+             *
+             * Start background music
+             */
+            this._bgSound.play();
+
+            /**
+             *
+             * Mute music in a page with spacebar or "M" button
+             */
+            let self = this;
+            document.addEventListener('keydown', function(event) {
+                if ((event.keyCode || event.which) == 32 || (event.keyCode || event.which) == 77) {
+                    self._bgSound.toggle(self._muteSwitchBtn);
+                }
+            });
         }
 
         /**
